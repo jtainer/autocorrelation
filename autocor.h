@@ -21,10 +21,12 @@
 
 // Calculates autocorrelation of sig and stores result in cor.
 // Number of elements n must be a power of 2.
+// Current implementation allocates a temporary auxiliary buffer,
+// recommended for memory-constrained systems.
 void autocor(float* sig, float* cor, unsigned int n);
 
 // Calculates autocorrelation of sig in-place, overwriting the signal with the
-// resulting autocorrelation values.
+// resulting autocorrelation values. Does not allocate auxiliary memory.
 void autocor_inpl(float complex* sig, unsigned int n);
 
 #endif

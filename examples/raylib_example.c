@@ -1,3 +1,9 @@
+// 
+// Music player that plots autocorrelation in real time
+//
+// 2023, Jonathan Tainer
+//
+
 #include <raylib.h>
 #include <semaphore.h>
 #include <string.h>
@@ -60,12 +66,6 @@ int main(int argc, char** argv) {
 	ToggleFullscreen();
 	HideCursor();
 
-	while (GetTime() < 0.f && !WindowShouldClose()) {
-		BeginDrawing();
-		ClearBackground(BLACK);
-		EndDrawing();
-	}
-
 	PlayMusicStream(music);
 
 	while (!WindowShouldClose()) {
@@ -90,13 +90,13 @@ int main(int argc, char** argv) {
 			Vector2 position = { x, y };
 			Vector2 size = { bar_width, bar_height[i] };
 
+			// Account for negative correlation
 			if (size.y < 0.f) {
 				position.y += size.y;
 				size.y *= -1;
 			}
 
 			DrawRectangleV(position, size, WHITE);
-
 		}
 
 		EndDrawing();

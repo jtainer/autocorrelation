@@ -23,6 +23,7 @@ void autocor(float* sig, float* cor, unsigned int n) {
 	for (unsigned int i = 0; i < n; i++) {
 		cor[i] = crealf(fft_buf[i]);
 	}
+	free(fft_buf);
 }
 
 // Calculates autocorrelation of sig in-place, overwriting the signal with the
